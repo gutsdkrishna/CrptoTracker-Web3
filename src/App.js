@@ -11,7 +11,8 @@ import TransferToken from "./pages/TransferToken"; // Import the new page
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Common/Header";
-
+import Allowance from "./pages/Allowance"; // Import the new page
+import WalletConnect from "./pages/WalletConnect"; // Import the new page
 function App() {
   const theme = createTheme({
     palette: {
@@ -33,7 +34,9 @@ function App() {
               <Route path="/coin/:id" element={<Coin />} />
               <Route path="/compare" element={<Compare />} />
               <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/walletconnect" element={<WalletConnect />} />
               <Route path="/transfer" element={<TransferToken />} /> {/* Add the new route */}
+              <Route path="/allowance" element={<Allowance />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

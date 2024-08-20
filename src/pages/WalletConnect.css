@@ -1,0 +1,50 @@
+/* src/pages/WalletConnect.css */
+
+.wallet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--darkgrey);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.connect-button,
+.disconnect-button {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.connect-button:hover,
+.disconnect-button:hover {
+    background-color: var(--darkblue);
+}
+
+.wallet-info {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.wallet-address,
+.wallet-balance,
+.wallet-loading {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}

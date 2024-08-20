@@ -12,6 +12,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: -20px;
 }
 
 @media only screen and (max-width: 600px) {

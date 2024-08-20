@@ -72,7 +72,8 @@ function Dashboard() {
         <Loader />
       ) : (
         <>
-          <Search search={search} handleChange={handleChange} />
+            <Search search={search} handleChange={handleChange} />
+            <Footer />
           <TabsComponent
             coins={search ? filteredCoins : paginatedCoins}
             setSearch={setSearch}

@@ -3,7 +3,6 @@ import React from "react";
 import Button from "../Button";
 import TemporaryDrawer from "./drawer";
 import "./styles.css";
-import WalletConnect from '../../WalletConnection'; // Adjusted path
 import gradient from "../../../assets/gradient.png";
 
 function Header() {
@@ -22,11 +21,18 @@ function Header() {
         <a href="/watchlist">
           <p className="nav-link">Watchlist</p>
         </a>
+        <a href="/walletconnect">
+          <p className="nav-link">Wallet Connect</p>
+        </a>
         <a href="/transfer">
           <p className="nav-link">Transfer Tokens</p>
         </a>
+        <a href="/allowance">
+          <p className="nav-link">Allowance</p>
+        </a>
+        
       </div>
-      <WalletConnect />
+      
     </div>
   );
 }
