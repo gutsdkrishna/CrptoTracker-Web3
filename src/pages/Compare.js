@@ -6,6 +6,7 @@ import Header from "../components/Common/Header";
 import Loader from "../components/Common/Loader";
 import SelectCoins from "../components/ComparePage/SelectCoins";
 import List from "../components/Dashboard/List";
+import ErrorBoundary from "../components/Common/ErrorBoundary";
 import { get100Coins } from "../functions/get100Coins";
 import { getCoinData } from "../functions/getCoinData";
 import { getPrices } from "../functions/getPrices";
@@ -15,10 +16,13 @@ import { settingCoinObject } from "../functions/settingCoinObject";
 function Compare() {
   const [allCoins, setAllCoins] = useState([]);
   const [loading, setLoading] = useState(false);
+  // id states
   const [crypto1, setCrypto1] = useState("bitcoin");
   const [crypto2, setCrypto2] = useState("ethereum");
+  // data states
   const [coin1Data, setCoin1Data] = useState({});
   const [coin2Data, setCoin2Data] = useState({});
+  // days state
   const [days, setDays] = useState(30);
   const [priceType, setPriceType] = useState("prices");
   const [chartData, setChartData] = useState({
@@ -40,6 +44,7 @@ function Compare() {
       settingCoinObject(data1, setCoin1Data);
       settingCoinObject(data2, setCoin2Data);
       if (data1 && data2) {
+        // getPrices
         const prices1 = await getPrices(crypto1, days, priceType);
         const prices2 = await getPrices(crypto2, days, priceType);
         settingChartData(setChartData, prices1, prices2);
@@ -52,17 +57,23 @@ function Compare() {
     setLoading(true);
     if (isCoin2) {
       const newCrypto2 = e.target.value;
+      // crypto2 is being changed
       setCrypto2(newCrypto2);
+      // fetch coin2 data
       const data2 = await getCoinData(newCrypto2);
       settingCoinObject(data2, setCoin2Data);
+      // fetch prices again
       const prices1 = await getPrices(crypto1, days, priceType);
       const prices2 = await getPrices(newCrypto2, days, priceType);
       settingChartData(setChartData, prices1, prices2);
     } else {
       const newCrypto1 = e.target.value;
+      // crypto1 is being changed
       setCrypto1(newCrypto1);
+      // fetch coin1 data
       const data1 = await getCoinData(newCrypto1);
       settingCoinObject(data1, setCoin1Data);
+      // fetch coin prices
       const prices1 = await getPrices(newCrypto1, days, priceType);
       const prices2 = await getPrices(crypto2, days, priceType);
       settingChartData(setChartData, prices1, prices2);
@@ -90,85 +101,41 @@ function Compare() {
     setLoading(false);
   };
 
-  // Define the custom options for the LineChart
-  const options = {
-    responsive: true,
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          position: 'left',
-          ticks: {
-            beginAtZero: false,
-            callback: function (value) {
-              return value.toLocaleString(); // Format with commas
-            },
-          },
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          position: 'right',
-          gridLines: {
-            drawOnChartArea: false, // Remove grid lines for right axis
-          },
-          ticks: {
-            beginAtZero: false,
-            callback: function (value) {
-              return value.toLocaleString();
-            },
-          },
-        },
-      ],
-      xAxes: [
-        {
-          type: 'time',
-          time: {
-            unit: 'day', // Assuming daily data points
-          },
-        },
-      ],
-    },
-    legend: {
-      display: true,
-      position: 'top',
-    },
-  };
-
   return (
-    <div>
-      <Header />
-      {loading || !coin1Data?.id || !coin2Data?.id ? (
-        <Loader />
-      ) : (
-        <>
-          <SelectCoins
-            allCoins={allCoins}
-            crypto1={crypto1}
-            crypto2={crypto2}
-            onCoinChange={onCoinChange}
-            days={days}
-            handleDaysChange={handleDaysChange}
-          />
-          <div className="grey-wrapper">
-            <List coin={coin1Data} />
-          </div>
-          <div className="grey-wrapper">
-            <List coin={coin2Data} />
-          </div>
-          <div className="grey-wrapper">
-            <ToggleComponents
-              priceType={priceType}
-              handlePriceTypeChange={handlePriceTypeChange}
+    <ErrorBoundary>
+      <div>
+        <Header />
+        {loading || !coin1Data?.id || !coin2Data?.id ? (
+          <Loader />
+        ) : (
+          <>
+            <SelectCoins
+              allCoins={allCoins}
+              crypto1={crypto1}
+              crypto2={crypto2}
+              onCoinChange={onCoinChange}
+              days={days}
+              handleDaysChange={handleDaysChange}
             />
-            <LineChart chartData={chartData} options={options} />
-          </div>
-          <Info title={coin1Data.name} desc={coin1Data.desc} />
-          <Info title={coin2Data.name} desc={coin2Data.desc} />
-        </>
-      )}
-    </div>
+            <div className="grey-wrapper">
+              <List coin={coin1Data} />
+            </div>
+            <div className="grey-wrapper">
+              <List coin={coin2Data} />
+            </div>
+            <div className="grey-wrapper">
+              <ToggleComponents
+                priceType={priceType}
+                handlePriceTypeChange={handlePriceTypeChange}
+              />
+              <LineChart chartData={chartData} multiAxis={true} />
+            </div>
+            <Info title={coin1Data.name} desc={coin1Data.desc} />
+            <Info title={coin2Data.name} desc={coin2Data.desc} />
+          </>
+        )}
+      </div>
+    </ErrorBoundary>
   );
 }
 
