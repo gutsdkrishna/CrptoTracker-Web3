@@ -1,10 +1,16 @@
+/* src/App.css or a global CSS file */
+
+:root {
+  --blue: #3a80e9;
+  --dark-blue: #2a60b9;
+}
+
 .App {
   display: flex;
 }
 
 .main-content {
   margin-left: 250px;
-  /* Adjust this value to match the width of your sidebar */
   padding: 2rem;
   width: 100%;
 }

@@ -1,3 +1,4 @@
+// src/components/Common/Header/index.js
 import React from "react";
 import Button from "../Button";
 import TemporaryDrawer from "./drawer";
@@ -20,6 +21,9 @@ function Header() {
         </a>
         <a href="/watchlist">
           <p className="nav-link">Watchlist</p>
+        </a>
+        <a href="/transfer">
+          <p className="nav-link">Transfer Tokens</p>
         </a>
       </div>
       <WalletConnect />

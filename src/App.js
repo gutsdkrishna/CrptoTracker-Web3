@@ -1,3 +1,4 @@
+// src/App.js
 import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -6,19 +7,12 @@ import Compare from "./pages/Compare";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Watchlist from "./pages/Watchlist";
+import TransferToken from "./pages/TransferToken"; // Import the new page
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Common/Header";
-// import WalletConnection from './components/WalletConnection';
-// import React, { useState } from 'react';
-// import WatchList from './components/WatchList';
-// import HistoricalData from './components/HistoricalData';
-// import Allowance from './components/Allowance';
-// import TokenTransfer from './components/TokenTransfer';
 
 function App() {
-  // const [walletAddress, setWalletAddress] = useState('')
-  
   const theme = createTheme({
     palette: {
       primary: {
@@ -30,7 +24,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      
       <div className="main-content">
         <ToastContainer />
         <ThemeProvider theme={theme}>
@@ -40,6 +33,7 @@ function App() {
               <Route path="/coin/:id" element={<Coin />} />
               <Route path="/compare" element={<Compare />} />
               <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/transfer" element={<TransferToken />} /> {/* Add the new route */}
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
