@@ -64,3 +64,54 @@
 .nav-link:hover:before {
   transform: scale(1.1);
 }
+/* src/components/Common/Header/styles.css */
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(5px, -5px);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
+
+  75% {
+    transform: translate(5px, 5px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 95vh;
+  background: linear-gradient(90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(31, 83, 198, 1) 0%,
+      rgba(0, 212, 255, 1) 100%);
+  background-size: cover;
+  animation: gradient 7s ease infinite, float 10s ease-in-out infinite;
+}
