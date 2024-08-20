@@ -60,24 +60,8 @@ The application will be available at `http://localhost:2000`.
 
 For a complete list of dependencies, refer to the `package.json` file.
 
-## Contributing
 
-We welcome contributions to CryptoTracker! To contribute, follow these steps:
-
-1. **Fork the repository.**
-2. **Create a new branch:**
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-3. **Make your changes and commit them:**
-    ```bash
-    git commit -m 'Add some feature'
-    ```
-4. **Push to the branch:**
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-5. **Create a pull request.**
+4. **Create a pull request.**
 
 ## License
 
