@@ -1,4 +1,24 @@
+# Global settings applied to the whole site
+[build]
+  publish = "build" # Directory to publish
+  command = "npm run build" # Build command
+
+# Redirects
 [[redirects]]
   from = "/*"
   to = "/"
   status = 200
+
+# Environment variables
+[build.environment]
+  NODE_VERSION = "14.15.1"
+  NPM_VERSION = "6.14.8"
+
+# Cache configuration for Go modules (if applicable)
+[build.cache]
+  paths = ["path/to/go/cache", "another/path"]
+
+# Example of setting Go version if your project uses Go
+[context.production.environment]
+  GO_VERSION = "1.14"
+
